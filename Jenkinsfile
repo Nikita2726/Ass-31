@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/Nikita2726/Ass-31'
-            }
-        }
-
         stage('Stop Old Containers') {
             steps {
                 sh 'docker-compose down || true'
