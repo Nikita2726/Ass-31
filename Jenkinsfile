@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repo') {
+            steps {
+                git 'https://github.com/Nikita2726/Ass-31'
+            }
+        }
+
+        stage('Stop Old Containers') {
+            steps {
+                sh 'docker-compose down || true'
+            }
+        }
+
+        stage('Build Containers') {
+            steps {
+                sh 'docker-compose up --build -d'
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh 'docker ps'
+            }
+        }
+    }
+}
