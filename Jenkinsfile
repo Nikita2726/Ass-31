@@ -8,19 +8,19 @@ pipeline {
     stages {
         stage('Stop Old Containers') {
             steps {
-                sh 'docker-compose down || true'
+                bat 'docker-compose down'
             }
         }
 
         stage('Build Containers') {
             steps {
-                sh 'docker-compose up --build -d'
+                bat 'docker-compose up --build -d'
             }
         }
 
         stage('Verify') {
             steps {
-                sh 'docker ps'
+                bat 'docker ps'
             }
         }
     }
