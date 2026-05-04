@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # 1. The Database Container
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    # This names the container 'mongo', matching your mongoose.connect string!
+
+  # 2. The Backend Container
+  backend:
+    build: ./blog-backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo # Wait for the database to start before starting the backend
+
+  # 3. The Frontend Container
+  frontend:
+    build: ./blog-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend # Wait for the backend to start before starting the frontend
