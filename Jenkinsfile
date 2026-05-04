@@ -1,8 +1,11 @@
 pipeline {
     agent any
 
-    stages {
+    triggers {
+        pollSCM('H/30 * * * *')
+    }
 
+    stages {
         stage('Clone Repo') {
             steps {
                 git 'https://github.com/Nikita2726/Ass-31'
